@@ -13,6 +13,10 @@ class Client extends Model
 
     protected $primaryKey ='id';
 
+    protected $fillable = [
+        'id'
+    ];
+
     public function comentaris()
     {
         return $this->belongsToMany(Propietat::class, 'review_propietat','id_cli','id_propietat')
@@ -21,6 +25,9 @@ class Client extends Model
             ->withPivot("nota_localitzacio")
             ->withPivot("nota_accesibilitat")
             ->withPivot("data_comentari");
+    }
+    public function reserva(){
+        return $this->hasMany(Reserva::class,'id_cli');
     }
 
 }
